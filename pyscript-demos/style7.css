@@ -1,0 +1,38 @@
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 7.5px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin-top: 25px;
+    margin-left: 25px;
+}
+
+.grid-wrapper {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.textEntry {
+    margin-left: 25px;
+    margin-top: 25px;
+}
+
+.textBox {
+    border: 2px solid red;
+    border-radius: 4px;
+}
+
+.hidden {
+    display: hidden;
+}
+
+.gradient {
+    background-color: rgb(187 247 208);
+    background-image: linear-gradient(to right, rgb(187 247 208) , rgb(186 230 253));
+
+}
+
