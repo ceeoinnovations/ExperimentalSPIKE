@@ -13,8 +13,10 @@ Author: Gabriel Sessions
 Weblink: http://www.ceeoinnovations.org/ExperimentalSPIKE/pyscript-demos/index.html
 
 ---
-## Project 2: 
+## Project 2: Teachable Machine
 
-Author: 
+Testing integrations between Google's Teachable Machine and PyREPL.JS (SPIKE Prime/Python Microcontrollers)
 
-Weblink: 
+Author: Gabriel Sessions
+
+Weblink: http://www.ceeoinnovations.org/ExperimentalSPIKE/teachable-machine-spike/index.html
