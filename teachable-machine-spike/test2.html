@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Teachable Machine Audio w/ SPIKE</title>
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/speech-commands@0.4.0/dist/speech-commands.min.js"></script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/gh/gabrielsessions/pyrepl-js/build/main.js"></script>
+    </head>
+    <div>
+        <h1 style="text-align: center;">Teachable Machine Audio w/ SPIKE Prime</h1>
+        <h2>Step 1: Enable Audio Stream</h2>
+        <p>Click the start button and enable microphone access to begin (takes a second or two):</p>
+    </div>
+
+    <script type="text/javascript">
+        // more documentation available at
+        // https://github.com/tensorflow/tfjs-models/tree/master/speech-commands
+    
+        // the link to your model provided by Teachable Machine export panel
+        const URL = "https://teachablemachine.withgoogle.com/models/D2hs9JYs3/";
+
+        let counter = 0;
+    
+        async function createModel() {
+            const checkpointURL = URL + "model.json"; // model topology
+            const metadataURL = URL + "metadata.json"; // model metadata
+    
+            const recognizer = speechCommands.create(
+                "BROWSER_FFT", // fourier transform type, not useful to change
+                undefined, // speech commands vocabulary feature, not useful for your models
+                checkpointURL,
+                metadataURL);
+    
+            // check that model and metadata are loaded via HTTPS requests.
+            await recognizer.ensureModelLoaded();
+    
+            return recognizer;
+        }
+
+        // Gets the class with the largest probability from a list of objects
+        function getLargestProbClass(prediction) {
+            let largest = 0;
+            for (let i = 1; i < prediction.length; i++) {
+                if (prediction[i] > prediction[largest]) {
+                    largest = i;
+                }
+            }
+            
+            if (largest == 1)
+                return "One";
+            if (largest == 2)
+                return "Three";
+            if (largest == 3)
+                return "Two";
+            return "Background";
+        }
+
+        // Triggers SPIKE code for each class detection
+        function activateSPIKE(largestClass) {
+            //console.log(largestClass);
+            if (window.pyrepl && window.pyrepl.isActive) {
+                switch(largestClass) {
+                    case 'One':
+                        window.pyrepl.write = 
+`import sound
+sound.beepPlay(500)`;
+                        break;
+                    case 'Two':
+                        window.pyrepl.write = 
+`import sound
+sound.beepPlay(750)`;
+                        break;
+                    case 'Three':
+                        window.pyrepl.write = 
+`import sound
+sound.beepPlay(1000)`;
+                        break;
+
+                }
+            }
+        }
+    
+        async function init() {
+            const recognizer = await createModel();
+            const classLabels = recognizer.wordLabels(); // get class labels
+            const labelContainer = document.getElementById("label-container");
+            for (let i = 0; i < classLabels.length; i++) {
+                labelContainer.appendChild(document.createElement("div"));
+            }
+    
+            // listen() takes two arguments:
+            // 1. A callback function that is invoked anytime a word is recognized.
+            // 2. A configuration object with adjustable fields
+            recognizer.listen(result => {
+                const scores = result.scores; // probability of prediction for each class
+                // render the probability scores per class
+                for (let i = 0; i < classLabels.length; i++) {
+                    const classPrediction = classLabels[i] + ": " + result.scores[i].toFixed(2);
+                    labelContainer.childNodes[i].innerHTML = classPrediction;
+                }
+
+                activateSPIKE(getLargestProbClass(scores));
+                /*
+                counter++;
+                if (counter > 0) {
+                    counter = 0;
+                    
+                }
+                */
+
+            }, {
+                includeSpectrogram: true, // in case listen should return result.spectrogram
+                probabilityThreshold: 0.75,
+                invokeCallbackOnNoiseAndUnknown: true,
+                overlapFactor: 0.50 // probably want between 0.5 and 0.75. More info in README
+            });
+    
+            // Stop the recognition in 5 seconds.
+            // setTimeout(() => recognizer.stopListening(), 5000);
+        }
+    </script>
+
+    <button type="button" onclick="init()">Start</button>
+    <div id="label-container"></div>
+
+    <h2>Step 2: Connect SPIKE Prime using PyREPL</h2>
+    <div id="root"> </div>
+
+    <h2>Step 3: Generate sound from the SPIKE Hub using your voice</h2>
+    Words to activate sounds:
+    <ul>
+        <li>"One" - Generates a low pitched note</li>
+        <li>"Two" - Generates a medium pitched note</li>
+        <li>"Three" - Generates a high pitched note</li>
+    </ul>
+
+</html>
+
+
+
