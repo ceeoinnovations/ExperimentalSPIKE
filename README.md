@@ -20,3 +20,12 @@ Testing integrations between Google's Teachable Machine and PyREPL.JS (SPIKE Pri
 Author: Gabriel Sessions
 
 Weblink: http://www.ceeoinnovations.org/ExperimentalSPIKE/teachable-machine-spike/index.html
+
+---
+## Project 3: Python Functions of PyREPL
+
+Potential solution to allow users to use PyREPL using native SPIKE function names and Python features using PyScript
+
+Author: Gabriel Sessions
+
+Weblink: http://www.ceeoinnovations.org/ExperimentalSPIKE/python-functions-for-pyrepl/index.html

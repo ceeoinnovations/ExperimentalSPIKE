@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="functions.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/gh/gabrielsessions/pyrepl-js/build/main.js"></script>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <br>
+    <h4>Avaliable SPIKE Modules: motor, port</h4>
+    <h4>Avaliable SPIKE Functions:</h4>
+    <ul>
+        <li>motor.motor_stop</li>
+        <li>motor.motor_move_at_power</li>
+        <li>motor.motor_move_at_speed</li>
+        <li>motor.motor_move_for_time</li>
+        <li>motor.motor_move_by_degrees</li>
+        <li>All port module constants are avaliable</li>
+    </ul>
+
+    
+    <py-config>
+        packages = ["numpy", "matplotlib"]
+        [[fetch]]
+        files = ['./motor.py', './port.py']
+        
+    </py-config>
+
+    <script>
+        // call the PyScript function
+		function doStuff() {
+			// get pointer to Python Function (within PyScript)
+	        let run_function = pyscript.runtime.globals.get('doStuff');
+	        run_function(); // call it
+		}
+
+        function runPyREPL(toWrite) {
+            if (window.pyrepl && window.pyrepl.isActive)
+                window.pyrepl.write = toWrite;
+            else 
+                console.error("PyREPL Error: Not Connected");
+        }
+
+        function getPyREPL() {
+            return window.pyrepl.read.slice(-2)[0];
+        }
+    </script>
+
+
+    
+    <py-script>
+        
+    </py-script>
+
+    <br>
+    <py-repl></py-repl>
+
+</body>
+</html>
