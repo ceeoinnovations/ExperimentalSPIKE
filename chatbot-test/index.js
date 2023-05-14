@@ -7,7 +7,12 @@ async function gptQuery() {
 }
 
 function displayResult(result) {
-  document.getElementById('container').innerHTML = `<p>${result}</p>`;
+  document.getElementById('container').innerHTML = "";
+  const lines = result.split('\n');
+  console.log(lines);
+  for (let i = 0; i < lines.length; i++) {
+    document.getElementById('container').innerHTML += `<p>${lines[i].replaceAll("  ", "&nbsp;&nbsp;")}</p>`;
+  }
   currentResponse = result;
 }
 
