@@ -26,7 +26,7 @@ function askgpt(query) {
     text: query
   }))
     .then((res) => res.json())
-    .then((res) => {displayResult(res.result); setCurrentQuery(query);})
+    .then((res) => {displayResult(res.response); setCurrentQuery(query);})
   
   return req;
 }
