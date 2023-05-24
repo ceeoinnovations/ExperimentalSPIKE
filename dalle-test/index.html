@@ -13,11 +13,11 @@
 </head>
 
 <body>
-  <h1 class="title">Chatbot Test - GPT 3.5</h1>
+  <h1 class="title">Dall-E Test</h1>
   <div class="center">
     <p class="mx1">Enter a query here:</p>
     <textarea id="queryBox" name="queryBox" rows="4" cols="50" class="mx1 p1"></textarea>
-    <button onclick="gptQuery()">Submit Query</button>
+    <button onclick="dalleQuery()">Submit Query</button>
   </div>
 
   <h3 class="subtitle">Response</h3>
@@ -28,12 +28,13 @@
   <div class="pyscript">
     <py-repl>
       from js import askgpt, currentQuery, currentResponse
+      import asyncio
       
       async def main(query):
-          await askgpt(query)
-          print("Query Finished!")
+          await generateimage(query)
+          print("Generation Finished!")
       
-      main("Tell me an interesting fact about the Python programming language.")
+      main("A LEGO version of Johnny 5 from the movie Short Circuit")
 
     </py-repl>
     <py-terminal>

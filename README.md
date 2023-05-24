@@ -29,3 +29,21 @@ Potential solution to allow users to use PyREPL using native SPIKE function name
 Author: Gabriel Sessions
 
 Weblink: http://www.ceeoinnovations.org/ExperimentalSPIKE/python-functions-for-pyrepl/index.html
+
+--
+## Project 4: PyScript Chatbot
+
+Testing out the OpenAI API and its interaction with PyScript and (future) interaction with SPIKE/WebSerial.
+
+Author: Gabriel Sessions
+
+Weblink: http://www.ceeoinnovations.org/ExperimentalSPIKE/chatbot-test/index.html
+
+--
+## Project 5: PyScript Dall-E
+
+Generate AI-generated "art" using the OpenAI API and PyScript.
+
+Author: Gabriel Sessions
+
+Weblink: Coming Soon
