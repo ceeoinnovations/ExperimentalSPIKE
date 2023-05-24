@@ -15,20 +15,19 @@
 <body>
   <h1 class="title">Dall-E Test</h1>
   <div class="center">
-    <p class="mx1">Enter a query here:</p>
+    <p class="mx1">Enter a prompt here:</p>
     <textarea id="queryBox" name="queryBox" rows="4" cols="50" class="mx1 p1"></textarea>
-    <button onclick="dalleQuery()">Submit Query</button>
+    <button onclick="dalleQuery()">Submit Prompt</button>
   </div>
 
   <h3 class="subtitle">Response</h3>
   <div id="container" class="container">
-    <p id="queryResponse">Returned Text Will Go Here!</p>
+    <p id="queryResponse">Returned Image Will Go Here!</p>
   </div>
 
   <div class="pyscript">
     <py-repl>
-      from js import askgpt, currentQuery, currentResponse
-      import asyncio
+      from js import generateimage
       
       async def main(query):
           await generateimage(query)

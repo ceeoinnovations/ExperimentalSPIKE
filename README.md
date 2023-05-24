@@ -42,8 +42,8 @@ Weblink: http://www.ceeoinnovations.org/ExperimentalSPIKE/chatbot-test/index.htm
 --
 ## Project 5: PyScript Dall-E
 
-Generate AI-generated "art" using the OpenAI API and PyScript.
+Generate AI-generated images using the OpenAI API (DALL-E) and PyScript.
 
 Author: Gabriel Sessions
 
-Weblink: Coming Soon
+Weblink: http://www.ceeoinnovations.org/ExperimentalSPIKE/dalle-test/index.html

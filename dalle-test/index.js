@@ -8,7 +8,7 @@ async function dalleQuery() {
 
 function displayResult(result) {
   document.getElementById('container').innerHTML = 
-    `<img src="${result} alt="Generated Image by DALL-E" />`;
+    `<img src="${result}" alt="Generated Image by DALL-E">`;
   currentResponse = result;
 }
 
@@ -29,7 +29,7 @@ function generateimage(prompt) {
     }
   })
     .then((res) => res.text())
-    .then((res) => {displayResult(res.response); setCurrentQuery(prompt);})
+    .then((res) => {displayResult(res); setCurrentQuery(prompt);})
   
   return req;
 }
