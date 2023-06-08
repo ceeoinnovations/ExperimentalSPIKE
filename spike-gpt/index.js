@@ -141,9 +141,24 @@ function checkAnswer(userAnswer) {
     mainContent.innerHTML += `<p style="background-color: green">Your answer was correct!</p>`;
     score++;
     document.querySelector("#score").innerHTML = "Score: " + score;
+    window.pyrepl.write = 
+  `import hub, time
+
+hub.speaker.beep(400)
+time.sleep_ms(200)
+hub.speaker.beep(550)
+time.sleep_ms(200)
+hub.speaker.beep(700)`
   }
   else {
     mainContent.innerHTML += `<p style="background-color: red">Your answer was incorrect. :(</p>`;
+    window.pyrepl.write = 
+  `import hub,time
+hub.speaker.beep(700)
+time.sleep_ms(200)
+hub.speaker.beep(550)
+time.sleep_ms(200)
+hub.speaker.beep(400)`
   }
 
   setTimeout(() => {
