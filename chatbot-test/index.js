@@ -22,11 +22,15 @@ function setCurrentQuery(query) {
 
 function askgpt(query) {
   document.getElementById('container').innerHTML = '<div class="center"><div class="lds-dual-ring"></div></div>';
+
   const req = fetch("https://askgpt-texhgputha-uc.a.run.app?" + new URLSearchParams({
     text: query
   }))
     .then((res) => res.json())
-    .then((res) => {displayResult(res.response); setCurrentQuery(query);})
-  
+    .then((res) => {
+      displayResult(res.response);
+      setCurrentQuery(query);
+    })
+
   return req;
 }
