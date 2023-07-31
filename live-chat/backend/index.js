@@ -27,3 +27,7 @@ wss.on('connection', (ws) => {
     console.log('WebSocket connection closed.');
   });
 });
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})

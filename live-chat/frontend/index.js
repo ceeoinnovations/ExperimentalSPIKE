@@ -1,4 +1,4 @@
-const socket = new WebSocket('ws://localhost:3000');
+const socket = new WebSocket('ws://34.121.177.172');
 console.log("hello world")
 
 socket.onopen = () => {
